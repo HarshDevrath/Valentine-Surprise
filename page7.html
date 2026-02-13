@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Forever With You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+height:100vh;
+background:linear-gradient(135deg,#2b0033,#66004d,#990066);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+overflow:hidden;
+font-family:'Poppins', sans-serif;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+/* Confession text */
+#confession{
+font-size:22px;
+max-width:750px;
+line-height:1.8;
+margin-bottom:40px;
+white-space:pre-line;
+}
+
+/* Final big text */
+#finalLove{
+font-family:'Dancing Script', cursive;
+font-size:80px;
+margin-top:20px;
+opacity:0;
+transition:opacity 2s ease;
+text-shadow:0 0 40px #ff99ff;
+}
+
+/* Floating golden particles */
+.particle{
+position:absolute;
+width:6px;
+height:6px;
+background:gold;
+border-radius:50%;
+opacity:0.7;
+animation:floatUp 8s linear infinite;
+}
+
+@keyframes floatUp{
+0%{ transform:translateY(100vh); opacity:0; }
+50%{ opacity:1; }
+100%{ transform:translateY(-10vh); opacity:0; }
+}
+</style>
+</head>
+<body>
+
+<div id="confession"></div>
+<div id="finalLove">I Love You ❤️</div>
+
+<script>
+
+const message = `From the moment you walked into my life,
+everything changed.
+
+You became my peace in chaos,
+my smile on difficult days,
+my comfort when the world feels heavy.
+
+With you, love doesn't feel complicated.
+It feels safe.
+It feels real.
+It feels like home.
+
+And if there is one thing I am sure about in this life…
+
+It is you.`;
+
+let i = 0;
+const confession = document.getElementById("confession");
+
+function typeEffect(){
+if(i < message.length){
+confession.innerHTML += message.charAt(i);
+i++;
+setTimeout(typeEffect, 35);
+}else{
+setTimeout(()=>{
+document.getElementById("finalLove").style.opacity = 1;
+},1500);
+}
+}
+
+typeEffect();
+
+/* Golden particles */
+setInterval(()=>{
+let p=document.createElement("div");
+p.classList.add("particle");
+p.style.left=Math.random()*100+"%";
+document.body.appendChild(p);
+setTimeout(()=>{p.remove();},8000);
+},500);
+
+</script>
+
+<!-- Background Music Continue -->
+<audio id="bgMusic" loop>
+  <source src="romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+window.addEventListener("load", () => {
+    let savedTime = localStorage.getItem("musicTime");
+    if (savedTime) music.currentTime = savedTime;
+
+    music.volume = 0.6;
+    music.play().catch(()=>{});
+});
+
+setInterval(() => {
+    localStorage.setItem("musicTime", music.currentTime);
+}, 1000);
+</script>
+
+</body>
+</html>

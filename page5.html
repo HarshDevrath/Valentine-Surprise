@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Our Magical Moment 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Poppins', sans-serif;
+background:linear-gradient(135deg,#ff9eb5,#ffc0cb,#ffb6c1);
+overflow:hidden;
+position:relative;
+}
+
+/* Split layout */
+.main{
+display:flex;
+width:100%;
+height:100%;
+align-items:center;
+justify-content:space-between;
+padding:0 6%;
+box-sizing:border-box;
+}
+
+/* Left side image */
+.photo{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.photo img{
+height:80vh;
+width:auto;
+max-width:95%;
+border-radius:30px;
+box-shadow:0 40px 100px rgba(0,0,0,0.6);
+object-fit:contain;
+}
+
+/* Right side lyrics */
+.lyrics-container{
+flex:1;
+display:flex;
+justify-content:flex-end;
+align-items:center;
+}
+
+.lyrics{
+max-width:520px;
+font-family:'Dancing Script', cursive;
+font-size:44px;
+color:white;
+text-align:right;
+line-height:1.5;
+min-height:160px;
+transition:opacity 0.8s ease;
+text-shadow:0 0 25px rgba(255,255,255,0.9);
+}
+
+/* Bottom center button */
+.next-btn{
+position:absolute;
+bottom:40px;
+left:50%;
+transform:translateX(-50%);
+padding:14px 40px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff4e88;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.next-btn:hover{
+transform:translateX(-50%) scale(1.1);
+background:#ff4e88;
+color:white;
+}
+</style>
+</head>
+<body>
+
+<div class="main">
+
+<div class="photo">
+<img src="5.jpeg" alt="Our Memory">
+</div>
+
+<div class="lyrics-container">
+<div class="lyrics" id="lyrics"></div>
+</div>
+
+</div>
+
+<button class="next-btn" onclick="location.href='page6.html'">
+Next ➜
+</button>
+
+<!-- Animated Lyrics -->
+<script>
+const lines = [
+"Baby… keep loving me 💕",
+"Just love me… yeah",
+"All you need to do is love me 💖",
+"Got me like… ah-ah-ah",
+"I’m tired of playing games",
+"Tell me what I gotta do",
+"To live inside your heart ❤️"
+];
+
+let index = 0;
+const lyricsDiv = document.getElementById("lyrics");
+
+function showLine(){
+if(index < lines.length){
+lyricsDiv.style.opacity = 0;
+
+setTimeout(()=>{
+lyricsDiv.innerHTML = lines[index];
+lyricsDiv.style.opacity = 1;
+index++;
+setTimeout(showLine, 2500);
+},500);
+}
+}
+
+showLine();
+</script>
+
+<!-- Background Music Continue Across Pages -->
+<audio id="bgMusic" loop>
+  <source src="romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+window.addEventListener("load", () => {
+    let savedTime = localStorage.getItem("musicTime");
+    if (savedTime) music.currentTime = savedTime;
+
+    music.volume = 0.5;
+    music.play().catch(()=>{});
+});
+
+setInterval(() => {
+    localStorage.setItem("musicTime", music.currentTime);
+}, 1000);
+</script>
+
+</body>
+</html>

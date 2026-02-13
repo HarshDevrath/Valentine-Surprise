@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Will You Be My Valentine? 💘</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-family:'Poppins', sans-serif;
+overflow:hidden;
+background:linear-gradient(-45deg,#ff4e88,#ff66cc,#ff99cc,#ff4e88);
+background-size:400% 400%;
+animation:gradientMove 8s ease infinite;
+color:white;
+text-align:center;
+}
+
+/* Animated Gradient */
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* Main Heading */
+h1{
+font-family:'Pacifico', cursive;
+font-size:70px;
+margin-bottom:20px;
+animation:popIn 1.5s ease-out;
+text-shadow:0 0 40px rgba(255,255,255,0.9);
+}
+
+/* Pop animation */
+@keyframes popIn{
+0%{transform:scale(0.5); opacity:0;}
+100%{transform:scale(1); opacity:1;}
+}
+
+/* Subtext */
+p{
+font-size:22px;
+margin-bottom:40px;
+}
+
+/* Buttons */
+.buttons{
+display:flex;
+gap:40px;
+}
+
+button{
+padding:14px 40px;
+font-size:20px;
+border:none;
+border-radius:40px;
+cursor:pointer;
+transition:0.3s;
+}
+
+#yes{
+background:white;
+color:#ff4e88;
+font-weight:bold;
+}
+
+#yes:hover{
+transform:scale(1.1);
+background:#ff4e88;
+color:white;
+}
+
+#no{
+background:#ffccdd;
+color:#ff0066;
+position:relative;
+}
+
+/* Floating hearts */
+.heart{
+position:absolute;
+font-size:25px;
+animation:floatUp 6s linear infinite;
+opacity:0.8;
+}
+
+@keyframes floatUp{
+0%{ transform:translateY(100vh); opacity:0; }
+50%{ opacity:1; }
+100%{ transform:translateY(-10vh); opacity:0; }
+}
+</style>
+</head>
+<body>
+
+<h1>Will You Be My Valentine? 💖</h1>
+<p>You have one very important decision to make 😌</p>
+
+<div class="buttons">
+<button id="yes" onclick="location.href='page2.html'">YES 💘</button>
+<button id="no">NO 🙈</button>
+</div>
+
+<script>
+// NO button runs away
+const noBtn = document.getElementById("no");
+
+noBtn.addEventListener("mouseover", () => {
+const x = Math.random() * (window.innerWidth - 100);
+const y = Math.random() * (window.innerHeight - 50);
+noBtn.style.position = "absolute";
+noBtn.style.left = x + "px";
+noBtn.style.top = y + "px";
+});
+
+// Floating hearts generator
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.innerHTML="💖";
+heart.classList.add("heart");
+heart.style.left=Math.random()*100+"%";
+heart.style.fontSize=(Math.random()*25+20)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove();},6000);
+},400);
+</script>
+
+<!-- Background Music Continue -->
+<audio id="bgMusic" loop>
+  <source src="romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+window.addEventListener("load", () => {
+    let savedTime = localStorage.getItem("musicTime");
+    if (savedTime) music.currentTime = savedTime;
+
+    music.volume = 0.6;
+    music.play().catch(()=>{});
+});
+
+setInterval(() => {
+    localStorage.setItem("musicTime", music.currentTime);
+}, 1000);
+</script>
+
+</body>
+</html>

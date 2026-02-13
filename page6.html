@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Our Special Moment 🎬💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+height:100vh;
+overflow:hidden;
+font-family:'Poppins', sans-serif;
+background:black;
+position:relative;
+}
+
+/* Fullscreen YouTube Background */
+iframe{
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+z-index:-2;
+pointer-events:none;
+}
+
+/* Dark overlay */
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.55);
+z-index:-1;
+}
+
+/* Floating Lyrics */
+.lyric{
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+font-family:'Dancing Script', cursive;
+font-size:48px;
+color:white;
+text-align:center;
+opacity:0;
+animation:floatUp 6s ease forwards;
+text-shadow:0 0 25px rgba(255,255,255,0.9);
+width:85%;
+}
+
+@keyframes floatUp{
+0%{ bottom:-60px; opacity:0; }
+20%{ opacity:1; }
+80%{ opacity:1; }
+100%{ bottom:80%; opacity:0; }
+}
+
+/* Button */
+.next-btn{
+position:absolute;
+bottom:40px;
+left:50%;
+transform:translateX(-50%);
+padding:14px 40px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff4e88;
+font-size:18px;
+cursor:pointer;
+z-index:2;
+transition:0.3s;
+}
+
+.next-btn:hover{
+transform:translateX(-50%) scale(1.1);
+background:#ff4e88;
+color:white;
+}
+</style>
+</head>
+<body>
+
+<!-- YouTube Shorts Embed -->
+<iframe 
+src="https://www.youtube.com/embed/csE_Q6jl9CY?autoplay=1&mute=1&controls=0&loop=1&playlist=csE_Q6jl9CY&modestbranding=1&rel=0"
+frameborder="0"
+allow="autoplay; encrypted-media"
+allowfullscreen>
+</iframe>
+
+<div class="overlay"></div>
+
+<button class="next-btn" onclick="location.href='page7.html'">
+Next ➜
+</button>
+
+<script>
+const lines = [
+"Some days I feel so happy ✨",
+"Some days I feel so low",
+"I’m learning how to take",
+"The good with the bad 💕",
+"Every night I look above",
+"Wondering why I’m young in love 💫"
+];
+
+let index = 0;
+
+function createLyric(){
+if(index < lines.length){
+const lyric = document.createElement("div");
+lyric.className = "lyric";
+lyric.innerText = lines[index];
+document.body.appendChild(lyric);
+
+setTimeout(()=>{ lyric.remove(); },6000);
+
+index++;
+setTimeout(createLyric, 3500);
+}
+}
+
+createLyric();
+</script>
+
+</body>
+</html>
+
+
